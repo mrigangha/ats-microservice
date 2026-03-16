@@ -1,0 +1,53 @@
+service: ats-zoho-integration
+
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: python3.11
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-east-1'}
+  timeout: 30
+  environment:
+    ZOHO_CLIENT_ID: ${env:ZOHO_CLIENT_ID, ''}
+    ZOHO_CLIENT_SECRET: ${env:ZOHO_CLIENT_SECRET, ''}
+    ZOHO_REFRESH_TOKEN: ${env:ZOHO_REFRESH_TOKEN, ''}
+    ZOHO_BASE_URL: ${env:ZOHO_BASE_URL, 'https://recruit.zoho.in/recruit/v2'}
+    ZOHO_ACCOUNTS_URL: ${env:ZOHO_ACCOUNTS_URL, 'https://accounts.zoho.in'}
+
+plugins:
+  - serverless-offline
+  - serverless-python-requirements
+
+custom:
+  serverless-offline:
+    httpPort: 3000
+
+functions:
+  getJobs:
+    handler: src/handlers/jobs.get_jobs
+    events:
+      - httpApi:
+          path: /jobs
+          method: GET
+
+  postCandidate:
+    handler: src/handlers/candidates.create_candidate
+    events:
+      - httpApi:
+          path: /candidates
+          method: POST
+
+  getApplications:
+    handler: src/handlers/applications.get_applications
+    events:
+      - httpApi:
+          path: /applications
+          method: GET
+
+  health:
+    handler: src/handlers/health.check
+    events:
+      - httpApi:
+          path: /health
+          method: GET

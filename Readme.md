@@ -18,23 +18,23 @@ A serverless microservice built with Python and Serverless Framework that integr
 
 ```
 ats-microservice/
-├── .env                        ← secrets (never commit)
-├── .env.example                ← template for env vars
+├── .env                       
+├── .env.example                
 ├── .gitignore
-├── serverless.yml              ← Lambda functions + routes
-├── requirements.txt            ← Python dependencies
-├── package.json                ← Node/Serverless plugins
+├── serverless.yml              Lambda functions + routes
+├── requirements.txt            Python dependencies
+├── package.json                Node/Serverless plugins
 └── src/
     ├── handlers/
-    │   ├── health.py           ← GET  /health
-    │   ├── jobs.py             ← GET  /jobs
-    │   ├── candidates.py       ← POST /candidates
-    │   └── applications.py     ← GET  /applications
+    │   ├── health.py           GET  /health
+    │   ├── jobs.py             GET  /jobs
+    │   ├── candidates.py       POST /candidates
+    │   └── applications.py     GET  /applications
     ├── services/
-    │   ├── zoho_auth.py        ← OAuth2 token refresh
-    │   └── zoho_service.py     ← all Zoho API calls + pagination
+    │   ├── zoho_auth.py        OAuth2 token refresh
+    │   └── zoho_service.py     all Zoho API calls + pagination
     └── utils/
-        └── response.py         ← response helpers + data normalizers
+        └── response.py         response helpers + data normalizers
 ```
 
 ---

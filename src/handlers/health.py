@@ -8,10 +8,6 @@ logger = logging.getLogger(__name__)
 
 
 def check(event, context):
-    """
-    GET /health
-    Checks if service is running and Zoho token is valid.
-    """
     try:
         token = get_access_token()
         token_preview = token[:15] + "..." if token else "none"

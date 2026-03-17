@@ -102,7 +102,7 @@ curl -X POST "https://accounts.zoho.in/oauth/v2/token" \
 
 Save the `refresh_token` — it never expires.
 
-> **Region Note**: If your Zoho account is in India use `accounts.zoho.in`. For EU use `accounts.zoho.eu`. For US use `accounts.zoho.com`.
+> **Region Note**: If your Zoho account is in India use `accounts.zoho.in`
 
 ---
 

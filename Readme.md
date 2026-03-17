@@ -308,33 +308,12 @@ GET /jobs          → fetches all pages from Zoho automatically
 GET /applications  → fetches all pages from Zoho automatically
 ```
 
----
-
-## Deploy to AWS (Optional)
-
-```bash
-# Configure AWS credentials
-aws configure
-
-# Deploy
-npx serverless deploy --stage dev
-```
-
-You will get live URLs like:
-```
-https://xxxxxxx.execute-api.us-east-1.amazonaws.com/jobs
-https://xxxxxxx.execute-api.us-east-1.amazonaws.com/candidates
-https://xxxxxxx.execute-api.us-east-1.amazonaws.com/applications
-```
-
----
-
 ## Environment Variables Reference
 
 | Variable | Required | Description |
 |----------|----------|-------------|
-| `ZOHO_CLIENT_ID` | ✅ Yes | OAuth2 Client ID from Zoho Developer Console |
-| `ZOHO_CLIENT_SECRET` | ✅ Yes | OAuth2 Client Secret |
-| `ZOHO_REFRESH_TOKEN` | ✅ Yes | OAuth2 Refresh Token (never expires) |
-| `ZOHO_BASE_URL` | ✅ Yes | Zoho Recruit API base URL |
-| `ZOHO_ACCOUNTS_URL` | ✅ Yes | Zoho Accounts URL for token refresh |
+| `ZOHO_CLIENT_ID` | Yes | OAuth2 Client ID from Zoho Developer Console |
+| `ZOHO_CLIENT_SECRET` |  Yes | OAuth2 Client Secret |
+| `ZOHO_REFRESH_TOKEN` |  Yes | OAuth2 Refresh Token (never expires) |
+| `ZOHO_BASE_URL` | Yes | Zoho Recruit API base URL |
+| `ZOHO_ACCOUNTS_URL` | Yes | Zoho Accounts URL for token refresh |

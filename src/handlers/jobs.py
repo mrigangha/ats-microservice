@@ -15,18 +15,14 @@ def get_jobs(event, context):
       ?status=OPEN|CLOSED|DRAFT  → filter by status
     """
     try:
-        # Read optional status filter from query params
         params = event.get("queryStringParameters") or {}
         status_filter = params.get("status", "").upper()
 
-        # Fetch all jobs from Zoho (pagination handled inside)
         raw_jobs = fetch_all_jobs()
         logger.info(f"Fetched {len(raw_jobs)} jobs from Zoho")
 
-        # Normalize to our unified format
         jobs = [normalize_job(j) for j in raw_jobs]
 
-        # Apply optional status filter
         if status_filter in ("OPEN", "CLOSED", "DRAFT"):
             jobs = [j for j in jobs if j["status"] == status_filter]
 

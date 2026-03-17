@@ -13,7 +13,6 @@ def check(event, context):
     Checks if service is running and Zoho token is valid.
     """
     try:
-        # Try to get a valid token — confirms Zoho connection works
         token = get_access_token()
         token_preview = token[:15] + "..." if token else "none"
 

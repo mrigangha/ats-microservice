@@ -7,7 +7,6 @@ from src.utils.response import error, success
 
 logger = logging.getLogger(__name__)
 
-# Fields that must exist in request body
 REQUIRED_FIELDS = ["name", "email", "job_id"]
 
 
@@ -26,13 +25,11 @@ def create_candidate(event, context):
     }
     """
     try:
-        # ── Parse body ────────────────────────────────────────────
         try:
             body = json.loads(event.get("body") or "{}")
         except json.JSONDecodeError:
             return error("Invalid JSON body", 400)
 
-        # ── Validate required fields ──────────────────────────────
         missing = [f for f in REQUIRED_FIELDS if not body.get(f)]
         if missing:
             return error(f"Missing required fields: {', '.join(missing)}", 400)
@@ -43,7 +40,6 @@ def create_candidate(event, context):
         resume_url = body.get("resume_url", "").strip()
         job_id = body["job_id"].strip()
 
-        # ── Step 1: Create candidate in Zoho ──────────────────────
         candidate_id = zoho_create_candidate(name, email, phone, resume_url)
         logger.info(f"Created candidate {candidate_id} in Zoho")
 

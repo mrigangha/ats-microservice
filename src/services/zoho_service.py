@@ -62,7 +62,7 @@ def create_candidate(name, email, phone, resume_url):
     if phone:
         payload["Mobile"] = phone
     if resume_url:
-        payload["Resume_URL"] = resume_url
+        payload["Resume_Link"] = resume_url
 
     response = requests.post(
         f"{BASE_URL}/Candidates",

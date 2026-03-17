@@ -14,11 +14,7 @@ def _headers():
     }
 
 
-# ── JOBS ─────────────────────────────────────────────────────────────────────
-
-
 def fetch_all_jobs():
-    """Fetch ALL job openings from Zoho, handles pagination internally."""
     all_jobs = []
     page = 1
 
@@ -49,11 +45,7 @@ def fetch_all_jobs():
     return all_jobs
 
 
-# ── CANDIDATES ───────────────────────────────────────────────────────────────
-
-
 def create_candidate(name, email, phone, resume_url):
-    """Create a candidate in Zoho Recruit. Returns the new candidate ID."""
 
     payload = {
         "Last_Name": name,
@@ -82,7 +74,6 @@ def create_candidate(name, email, phone, resume_url):
 
     result = results[0]
 
-    # Duplicate email — return existing candidate ID instead of crashing
     if result.get("code") == "DUPLICATE_DATA":
         existing_id = result.get("details", {}).get("id")
         if existing_id:
@@ -96,7 +87,6 @@ def create_candidate(name, email, phone, resume_url):
 
 
 def associate_candidate_to_job(candidate_id, job_id):
-    """Associate an existing candidate to a job opening in Zoho."""
 
     payload = {
         "data": [
@@ -129,15 +119,7 @@ def associate_candidate_to_job(candidate_id, job_id):
     raise RuntimeError(f"Association failed: {result.get('message')}")
 
 
-# ── APPLICATIONS ─────────────────────────────────────────────────────────────
-
-
 def fetch_all_applications(job_id):
-    """
-    Fetch ALL candidates associated to a job opening.
-    Uses GET /Job_Openings/{job_id}/associate endpoint.
-    Handles pagination internally.
-    """
     all_apps = []
     page = 1
 
@@ -172,7 +154,6 @@ def fetch_all_applications(job_id):
 
 
 def fetch_all_candidates():
-    """Fetch ALL candidates across all jobs, handles pagination internally."""
     all_candidates = []
     page = 1
 

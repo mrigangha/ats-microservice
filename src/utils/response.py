@@ -17,7 +17,6 @@ def error(message, status_code=500):
     }
 
 
-# ── Zoho Job_Status → our status ─────────────────────────────────
 JOB_STATUS_MAP = {
     "In-progress": "OPEN",
     "Authorised": "OPEN",
@@ -28,7 +27,6 @@ JOB_STATUS_MAP = {
     "Approval Pending": "DRAFT",
 }
 
-# ── Zoho Candidate_Status → our status ───────────────────────────
 APP_STATUS_MAP = {
     "New": "APPLIED",
     "In-Review": "SCREENING",
@@ -42,7 +40,6 @@ APP_STATUS_MAP = {
 
 
 def normalize_job(job):
-    """Convert Zoho Job_Opening → our unified format."""
     city = job.get("City") or ""
     state = job.get("State") or ""
     country = job.get("Country") or ""
@@ -62,7 +59,6 @@ def normalize_job(job):
 
 
 def normalize_application(app):
-    """Convert Zoho Candidate record (from job) → our unified format."""
     raw_status = app.get("Candidate_Status", "New")
     status = APP_STATUS_MAP.get(raw_status, "APPLIED")
 

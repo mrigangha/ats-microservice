@@ -11,19 +11,6 @@ REQUIRED_FIELDS = ["name", "email", "job_id"]
 
 
 def create_candidate(event, context):
-    """
-    POST /candidates
-    Creates a candidate in Zoho Recruit and attaches them to a job.
-
-    Request body:
-    {
-        "name":       "John Doe",         required
-        "email":      "john@gmail.com",   required
-        "phone":      "+91 9876543210",   optional
-        "resume_url": "https://...",      optional
-        "job_id":     "576753000000123"   required
-    }
-    """
     try:
         try:
             body = json.loads(event.get("body") or "{}")
@@ -43,7 +30,6 @@ def create_candidate(event, context):
         candidate_id = zoho_create_candidate(name, email, phone, resume_url)
         logger.info(f"Created candidate {candidate_id} in Zoho")
 
-        # ── Step 2: Associate candidate to job ────────────────────
         associate_candidate_to_job(candidate_id, job_id)
         logger.info(f"Associated candidate {candidate_id} to job {job_id}")
 

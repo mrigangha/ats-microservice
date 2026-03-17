@@ -7,13 +7,7 @@ logger = logging.getLogger(__name__)
 
 
 def get_jobs(event, context):
-    """
-    GET /jobs
-    Returns all job openings from Zoho Recruit.
 
-    Optional query param:
-      ?status=OPEN|CLOSED|DRAFT  → filter by status
-    """
     try:
         params = event.get("queryStringParameters") or {}
         status_filter = params.get("status", "").upper()

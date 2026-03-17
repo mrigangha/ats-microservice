@@ -100,15 +100,6 @@ curl -X POST "https://accounts.zoho.in/oauth/v2/token" \
   -d "grant_type=authorization_code"
 ```
 
-Response:
-```json
-{
-  "access_token": "1000.xxxxx",
-  "refresh_token": "1000.yyyyy",
-  "expires_in": 3600
-}
-```
-
 Save the `refresh_token` — it never expires.
 
 > **Region Note**: If your Zoho account is in India use `accounts.zoho.in`. For EU use `accounts.zoho.eu`. For US use `accounts.zoho.com`.
@@ -128,7 +119,7 @@ npm --version     # 9+
 ### Step 1 — Clone and Install
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/mrigangha/ats-microservice.git
 cd ats-microservice
 
 # Install Serverless plugins
